@@ -10,23 +10,23 @@ import java.io.Serializable;
 /**
  * Created by david on 17/03/2018.
  */
+
 @Entity
-@Table(name = "product")
+@Table(name = "store")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)
 @Data
-public class Product implements Serializable {
+public class Store implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
-    private String description;
-    private Double price;
 
-    @ManyToOne
-    private Store store;
+    private String address;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Cousine cousine;
 }

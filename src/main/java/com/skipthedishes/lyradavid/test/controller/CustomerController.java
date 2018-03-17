@@ -19,7 +19,7 @@ public class CustomerController {
     private CustomerRepository customerRepository;
 
     @PostMapping("/api/v1/customer")
-    public Customer createNote(@Valid @RequestBody Customer customer) {
+    public Customer createCustomer(@Valid @RequestBody Customer customer) {
         return customerRepository.save(customer);
     }
 

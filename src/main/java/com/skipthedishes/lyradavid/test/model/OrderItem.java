@@ -1,74 +1,32 @@
 package com.skipthedishes.lyradavid.test.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * Created by david on 17/03/2018.
  */
+@Entity
+@Table(name = "order_item")
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
+        allowGetters = true)
+@Data
+public class OrderItem implements Serializable {
 
-public class OrderItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+    private Double price;
+    private Integer quantity;
+    private Double total;
 
-private Integer id;
-private Integer orderId;
-private Integer productId;
-private Product product;
-private Integer price;
-private Integer quantity;
-private Integer total;
-
-public Integer getId() {
-        return id;
-        }
-
-public void setId(Integer id) {
-        this.id = id;
-        }
-
-public Integer getOrderId() {
-        return orderId;
-        }
-
-public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-        }
-
-public Integer getProductId() {
-        return productId;
-        }
-
-public void setProductId(Integer productId) {
-        this.productId = productId;
-        }
-
-public Product getProduct() {
-        return product;
-        }
-
-public void setProduct(Product product) {
-        this.product = product;
-        }
-
-public Integer getPrice() {
-        return price;
-        }
-
-public void setPrice(Integer price) {
-        this.price = price;
-        }
-
-public Integer getQuantity() {
-        return quantity;
-        }
-
-public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-        }
-
-public Integer getTotal() {
-        return total;
-        }
-
-public void setTotal(Integer total) {
-        this.total = total;
-        }
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Product product;
 
 }
 
