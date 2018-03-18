@@ -51,6 +51,7 @@ public class OrderController {
 
         entity.setDate(new Date(System.currentTimeMillis()));
         entity.setDeliveryAddress(order.getDeliveryAddress());
+        entity.setStatus(order.getStatus());
         entity.setContact(order.getContact());
         entity.setStore(store);
 
