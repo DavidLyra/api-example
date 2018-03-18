@@ -1,0 +1,16 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/skip_the_dishes?useSSL=false
+    username: root
+    password: admin
+
+## Hibernate Properties
+# The SQL dialect makes Hibernate generate better SQL for the chosen database
+  jpa:
+    properties:
+      hibernate:
+      dialec: org.hibernate.dialect.MySQL5Dialect
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto: update

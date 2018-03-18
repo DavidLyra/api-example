@@ -11,9 +11,9 @@ import com.skipthedishes.lyradavid.test.repository.StoreRepository;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -38,6 +38,26 @@ public class OrderController {
     @Autowired
     private ProductRepository productRepository;
 
+    // Get a Order
+    @GetMapping("/api/v1/order/{id}")
+    public Order getOrderById(@PathVariable(value = "id") Integer orderId) {
+        return orderRepository.findOne(orderId);
+    }
+
+    // Update Status
+
+    @PutMapping("/api/v1/order" )
+    public ResponseEntity<Object> updateStatusOrder(@RequestBody OrderUpdateDto orderUpdate) {
+        Order persisted = orderRepository.findOne(orderUpdate.getId());
+        if (persisted != null) {
+            persisted.setStatus(orderUpdate.getStatus());
+            orderRepository.save(persisted);
+            return new ResponseEntity<Object>(HttpStatus.OK);
+        } else return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
+    }
+
+    // Insert Order
+
     @PostMapping("/api/v1/order")
     public OrderDto createOrder(@Valid @RequestBody OrderDto order) {
         Order entity = new Order();
@@ -54,8 +74,6 @@ public class OrderController {
         entity.setStatus(order.getStatus());
         entity.setContact(order.getContact());
         entity.setStore(store);
-
-//        entity = orderRepository.save(entity);
 
         for (OrderItemDto dto : order.getOrderItems()) {
             OrderItem orderItem = new OrderItem();
@@ -102,5 +120,11 @@ public class OrderController {
         private Double price;
         private Integer quantity;
         private Double total;
+    }
+
+    @Data
+    public static class OrderUpdateDto implements Serializable {
+        private Integer id;
+        private String status;
     }
 }
