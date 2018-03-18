@@ -8,7 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CousineRepository extends JpaRepository<Cousine, Long> {
-
-    // @Cacheable(key = "xpto")
     List<Cousine> findByNameContaining(String searchText);
 }

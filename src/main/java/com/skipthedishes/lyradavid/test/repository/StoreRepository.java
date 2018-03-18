@@ -13,7 +13,10 @@ import java.util.List;
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Integer> {
 
+
     @Query("select s from Store s where s.cousine.id = ?1")
     List<Store> findByCousineId(Long cousineId);
+
+    List<Store> findByNameContaining(String searchText);
 
 }

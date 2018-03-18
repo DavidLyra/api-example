@@ -18,32 +18,22 @@ import java.util.List;
 public class StoreController {
 
     @Autowired
-    private StoreRepository cousineRepository;
+    private StoreRepository storeRepository;
 
+    // Get All Stores
     @GetMapping
     public List<Store> storeList() {
-        return cousineRepository.findAll();
-    }
-
-    // Get All Cousines
-    @GetMapping("/api/v1/cousine")
-    public List<Store> getAllCousine() {
-        return cousineRepository.findAll();
+        return storeRepository.findAll();
     }
 
     // Get a Single Store
-    @GetMapping("/api/v1/cousine/{id}/stores")
-    public Store getCousineById(@PathVariable(value = "id") Integer cousineId) {
-        return cousineRepository.findOne(cousineId);
-        //   .orElseThrow(() -> new ResourceNotFoundException("Store", "id", cousineId));
+    @GetMapping("/{id}")
+    public Store getStoreId(@PathVariable(value = "id") Integer storeId) {
+        return storeRepository.findOne(storeId);
     }
 
-    /*
-    // Get Cousines By Text
-    @GetMapping("/api/v1/cousine/search/{searchText}")
-    public Store getCousineByText(@PathVariable(value = "searchText") String text) {
-        List<Registration> findByPlaceContaining(String text);
-        return
+    @GetMapping("/search/{searchText}")
+    public List<Store> storeList(@PathVariable("searchText") String searchText) {
+        return storeRepository.findByNameContaining(searchText);
     }
-    */
 }
