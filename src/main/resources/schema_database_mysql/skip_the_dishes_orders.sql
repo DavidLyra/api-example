@@ -38,7 +38,7 @@ CREATE TABLE `orders` (
   KEY `FK5n14sr4mswfdtaoiwj7rkt0mw` (`store_id`),
   CONSTRAINT `FK5n14sr4mswfdtaoiwj7rkt0mw` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`),
   CONSTRAINT `FK624gtjin3po807j3vix093tlf` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,6 +47,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'David Lyra','2018-03-18 13:16:34','HOTEL TRANSAMERICA AV. DAS NACOES 3500','Canceled',28.5,1,1),(4,'David Lyra','2018-03-18 13:16:34','HOTEL TRANSAMERICA AV. DAS NACOES 3500','Approved',101.25,1,1),(6,'David Lyra','2018-03-18 13:16:34','HOTEL TRANSAMERICA AV. DAS NACOES 3500','Pending',26.3,1,1),(9,'David Lyra','2018-03-18 14:09:37','RUA JORNALISTA HENRIQUE CORDEIRO 310','Approved',101.25,1,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-17 23:05:37
+-- Dump completed on 2018-03-18 17:09:55
