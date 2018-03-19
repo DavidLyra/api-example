@@ -28,31 +28,4 @@ public class CustomerController {
         return customerRepository.save(customer);
     }
 
-    @PostMapping(value = "/api/v1/customer/auth", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> authCheck(@Valid @RequestBody AuthDto auth) {
-
-        Customer customer = customerRepository.findCustomerEmail(auth.getEmail());
-
-        if (customer !=null) {
-            if (auth.getEmail() != null && auth.getPassword() != null) {
-                if (customer.getEmail().equals(customer.getEmail()) && auth.getPassword().equals(customer.getPassword()))
-                    return new ResponseEntity<Object>(HttpStatus.OK);
-                else
-                    return new ResponseEntity<Object>(HttpStatus.UNAUTHORIZED);
-            }
-        } else return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
-
-        return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-    }
-
-
-
-    @Data
-    public static class AuthDto implements Serializable {
-        @NotBlank
-        private String email;
-        @NotBlank
-        private String password;
-    }
-
 }

@@ -12,3 +12,7 @@ The collection is located in the resources directory: /main/resources/collection
 ## When you start the application, you are all set to view the documentation that is generated.
 
 Go to URL: http://localhost:8080/v2/api-docs
+
+## Basic Auth Authorization
+User: lyra
+Password: 123456

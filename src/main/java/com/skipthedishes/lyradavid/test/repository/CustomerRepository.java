@@ -10,6 +10,4 @@ import org.springframework.data.repository.query.Param;
  */
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-    @Query(value = "select * from customer where email = :ie", nativeQuery = true)
-    Customer findCustomerEmail(@Param("ie") String email);
 }
